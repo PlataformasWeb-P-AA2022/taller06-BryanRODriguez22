@@ -1,13 +1,17 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy import and_, or_ 
+from sqlalchemy import and_, or_ # se importa el operador and
 
+# se importa la clase(s) del
+# archivo genera_tablas
 from genera_base import Pais
+
 engine = create_engine('sqlite:///datospaisese.db')
 
 Session = sessionmaker(bind=engine)
 session = Session()
 
-#Presentar todos los países del continente americano
-info_pais = session.query(Pais).filter(Pais.continente.in_(['NA','SA','CA'])).all()
+# Presentar los lenguajes de cada país.
+
+info_pais = session.query(Pais.nombre_pais,Pais.Lenguajes).all()
 print(info_pais)
